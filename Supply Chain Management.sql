@@ -1,0 +1,13 @@
+select*from data_co_supply_chain_dataset;
+alter table c change`Order Status` Order_Status Varchar(50);
+alter table data_co_supply_chain_dataset change `Delivery Status` `Delivery_Status` varchar(50);
+select Order_Status ,sum(sales)as Total_Money_Lost from data_co_supply_chain_dataset where Order_Status='Suspected_Fraud' group by Order_Status;
+alter table data_co_supply_chain_dataset change `Shipping Mode` `Shipping_Mode` Varchar(50);
+Alter table data_co_supply_chain_dataset change `Order Id` `Order_ID`  Varchar(50);
+Select Shipping_Mode,count(Order_ID) as Late_Deliveries from  data_co_supply_chain_dataset where Delivery_Status='Late Delivery' Group by Shipping_Mode order by Late_Deliveries desc;
+alter table data_co_supply_chain_dataset change `Department Id` `Department_ID` varchar(50);
+Alter table data_co_supply_chain_dataset change `Department Name` `Department_Name` varchar(50);
+select Department_Name, count(Order_ID) AS Total_Orders FROM data_co_supply_chain_dataset Group By Department_Name ORDER BY Total_Orders ;
+alter table data_co_supply_chain_dataset change `Order Profit Per Order` `Order_Profit_Per_Order` varchar(50);
+select market , sum(Order_Profit_Per_Order) AS Total_Profit from data_co_supply_chain_dataset group by Market ;
+alter Table data_co_supply_chain_dataset change `Category Id` `Category_Id`varchar(50);
